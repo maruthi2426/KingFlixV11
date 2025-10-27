@@ -15,6 +15,7 @@ const fetcher = (url: string) =>
   })
 
 export function DownloadButton({ item }: DownloadButtonProps) {
+  console.log(item)
   const title = getTitle(item)
   const year = getYear(item)
 
