@@ -168,3 +168,15 @@ export function getTMDBApiKey(): string {
 
   return apiKey
 }
+
+export async function fetchTMDBDetails(tmdbId: number, type: MediaType = "movie"): Promise<Movie | null> {
+  const apiKey = getTMDBApiKey()
+  try {
+    const res = await fetch(`${TMDB_BASE_URL}/${type}/${tmdbId}?api_key=${apiKey}&language=en-US`)
+    if (!res.ok) throw new Error("Failed to fetch TMDB data")
+    return await res.json()
+  } catch (error) {
+    console.error("Error fetching TMDB details:", error)
+    return null
+  }
+}
