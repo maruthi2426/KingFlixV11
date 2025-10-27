@@ -154,7 +154,7 @@ export function formatRuntime(minutes?: number): string {
 }
 
 export function getTMDBApiKey(): string {
-  const apiKey = process.env.TMDB_API_KEY || ""
+  const apiKey = process.env.TMDB_API_KEY || "61b1d28917bca6adcd5f2dc0e2c772bd"
 
   if (!apiKey) {
     console.error("[v0] CRITICAL: TMDB_API_KEY environment variable is not set!")
