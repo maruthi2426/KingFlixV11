@@ -31,7 +31,7 @@ export default async function MoviePage({ params }: { params: { id: string } }) 
 
   if (!movie) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen ">
         <Navbar />
         <main className="container mx-auto px-4 py-16">
           <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">

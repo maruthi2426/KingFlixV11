@@ -78,7 +78,7 @@ export function MediaDetail({ item, mediaType }: MediaDetailProps) {
   return (
     <div className="relative overflow-hidden">
       <div className="relative bg-gradient-to-b from-background/80 to-background">
-        <div className="absolute inset-0 hidden md:block">
+        <div className="absolute inset-0 hidden md:block ">
           <Image
             src={getImageUrl(item.backdrop_path, "w1280") || "/placeholder.svg"}
             alt={getTitle(item)}
@@ -92,7 +92,7 @@ export function MediaDetail({ item, mediaType }: MediaDetailProps) {
 
         <div className="relative container mx-auto px-4 py-8 md:py-12">
           {/* Poster at Top */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-8  pt-8">
             <div className="relative w-48 sm:w-56 md:w-64 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl glass">
               <Image
                 src={getImageUrl(item.poster_path, "w500") || "/placeholder.svg"}
