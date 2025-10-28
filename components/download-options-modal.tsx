@@ -33,7 +33,7 @@ export function DownloadOptionsModal({ isOpen, onClose, movieTitle, downloads }:
           <h2 className="text-xl font-bold text-balance">Download Options for {movieTitle}</h2>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-white/10 rounded-lg transition-colors"
+            className="p-1 hover:bg-white/10 rounded-lg transition-colors flex-shrink-0"
             aria-label="Close modal"
           >
             <X className="w-6 h-6" />
@@ -49,10 +49,10 @@ export function DownloadOptionsModal({ isOpen, onClose, movieTitle, downloads }:
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setSelectedIndex(index)}
-              className="group flex items-center justify-between p-4 rounded-lg border border-white/20 hover:border-red-500 hover:bg-red-500/10 transition-all duration-200 cursor-pointer"
+              className="group flex flex-col sm:flex-row sm:items-center sm:justify-between p-4 rounded-lg border border-white/20 hover:border-red-500 hover:bg-red-500/10 transition-all duration-200 cursor-pointer gap-3 sm:gap-4"
             >
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-2">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
                   {/* Quality Badge */}
                   <span className="px-2 py-1 rounded-md bg-red-500/20 text-red-400 text-xs font-semibold">
                     {download.quality}
@@ -69,10 +69,10 @@ export function DownloadOptionsModal({ isOpen, onClose, movieTitle, downloads }:
                 </p>
               </div>
 
-              {/* File Size and Download Icon */}
-              <div className="flex flex-col items-end gap-2 ml-4">
+              {/* File Size and Download Icon - CHANGE: Made responsive and always visible */}
+              <div className="flex items-center justify-between sm:flex-col sm:items-end gap-3 w-full sm:w-auto">
                 <span className="text-sm font-semibold text-white whitespace-nowrap">{download.formattedSize}</span>
-                <i className="fas fa-download text-red-500 text-lg animate-bounce-slow"></i>
+                <i className="fas fa-download text-red-500 text-xl sm:text-lg animate-bounce-slow flex-shrink-0"></i>
               </div>
             </a>
           ))}
