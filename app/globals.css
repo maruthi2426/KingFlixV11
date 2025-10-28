@@ -217,3 +217,18 @@ h3 {
   );
   background-size: 1000px 100%;
 }
+
+/* Custom animation for download icon - continuous smooth bounce */
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 1.5s ease-in-out infinite;
+}

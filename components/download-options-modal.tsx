@@ -1,6 +1,6 @@
 "use client"
 
-import { X, Download } from "lucide-react"
+import { X } from "lucide-react"
 import { useState } from "react"
 
 interface DownloadOption {
@@ -49,12 +49,12 @@ export function DownloadOptionsModal({ isOpen, onClose, movieTitle, downloads }:
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setSelectedIndex(index)}
-              className="group flex items-center justify-between p-4 rounded-lg border border-white/20 hover:border-accent hover:bg-accent/10 transition-all duration-200 cursor-pointer"
+              className="group flex items-center justify-between p-4 rounded-lg border border-white/20 hover:border-red-500 hover:bg-red-500/10 transition-all duration-200 cursor-pointer"
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-2">
                   {/* Quality Badge */}
-                  <span className="px-2 py-1 rounded-md bg-accent/20 text-accent text-xs font-semibold">
+                  <span className="px-2 py-1 rounded-md bg-red-500/20 text-red-400 text-xs font-semibold">
                     {download.quality}
                   </span>
                   {/* Codec Badge */}
@@ -69,10 +69,10 @@ export function DownloadOptionsModal({ isOpen, onClose, movieTitle, downloads }:
                 </p>
               </div>
 
-              {/* File Size */}
+              {/* File Size and Download Icon */}
               <div className="flex flex-col items-end gap-2 ml-4">
                 <span className="text-sm font-semibold text-white whitespace-nowrap">{download.formattedSize}</span>
-                <Download className="w-5 h-5 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <i className="fas fa-download text-red-500 text-lg animate-bounce-slow"></i>
               </div>
             </a>
           ))}
