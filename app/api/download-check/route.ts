@@ -1,12 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 
-<<<<<<< HEAD
 const DOWNLOAD_SERVER_URL = process.env.DOWNLOAD_SERVER_URL || "https://telegrambot-ihtv.onrender.com" 
 const DOWNLOAD_ENDPOINT = process.env.DOWNLOAD_ENDPOINT || "/allvideos" // Changed from /api/videos to /allvideos
-=======
-const DOWNLOAD_SERVER_URL = process.env.DOWNLOAD_SERVER_URL || "https://telegrambot-1-yp3e.onrender.com"
-const DOWNLOAD_ENDPOINT = process.env.DOWNLOAD_ENDPOINT || "/allvideos"
->>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
 
 interface DownloadItem {
   id: number
@@ -25,20 +20,12 @@ interface DownloadItem {
 }
 
 function normalizeFileName(fileName: string): string {
-<<<<<<< HEAD
   // Remove file extension and normalize
   return fileName
     .replace(/\.[^/.]+$/, "") // Remove extension
     .toLowerCase()
     .replace(/[._\-;]/g, " ") // Replace separators with spaces
     .replace(/\s+/g, " ") // Normalize spaces
-=======
-  return fileName
-    .replace(/\.[^/.]+$/, "")
-    .toLowerCase()
-    .replace(/[._\-;]/g, " ")
-    .replace(/\s+/g, " ")
->>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
     .trim()
 }
 
@@ -64,7 +51,6 @@ function calculateSimilarity(str1: string, str2: string): number {
   return union.size > 0 ? intersection.size / union.size : 0
 }
 
-<<<<<<< HEAD
 function findMatchingDownload(
   movieTitle: string,
   year: number | undefined,
@@ -74,50 +60,11 @@ function findMatchingDownload(
 
   let bestMatch: DownloadItem | null = null
   let bestScore = 0
-=======
-function extractQuality(fileName: string): string {
-  const qualityMatch = fileName.match(/(\d{3,4}p|4K|2K|SD|HD)/i)
-  if (qualityMatch) {
-    return qualityMatch[1].toUpperCase()
-  }
-  return "Unknown"
-}
-
-function extractCodec(fileName: string): string {
-  const codecMatch = fileName.match(/(HEVC|x265|x264|H\.264|H\.265|AV1|VP9)/i)
-  if (codecMatch) {
-    return codecMatch[1].toUpperCase()
-  }
-  return ""
-}
-
-function formatFileSize(bytes: number): string {
-  if (bytes === 0) return "0 B"
-  const gb = bytes / (1024 * 1024 * 1024)
-  if (gb >= 1) {
-    return `${gb.toFixed(2)} GB`
-  }
-  const mb = bytes / (1024 * 1024)
-  if (mb >= 1) {
-    return `${mb.toFixed(0)} MB`
-  }
-  return `${(bytes / 1024).toFixed(0)} KB`
-}
-
-function findMatchingDownloads(
-  movieTitle: string,
-  year: number | undefined,
-  downloads: DownloadItem[],
-): DownloadItem[] {
-  const normalizedTitle = normalizeMovieTitle(movieTitle, year)
-  const matches: DownloadItem[] = []
->>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
 
   for (const download of downloads) {
     const normalizedFileName = normalizeFileName(download.file_name)
 
     if (normalizedFileName === normalizedTitle) {
-<<<<<<< HEAD
       return download
     }
 
@@ -126,18 +73,6 @@ function findMatchingDownloads(
     }
 
     const titleWords = normalizedTitle.split(" ").filter((w) => w.length > 2) // Only consider words > 2 chars
-=======
-      matches.unshift(download) // Exact match first
-      continue
-    }
-
-    if (normalizedFileName.includes(normalizedTitle) || normalizedTitle.includes(normalizedFileName)) {
-      matches.push(download)
-      continue
-    }
-
-    const titleWords = normalizedTitle.split(" ").filter((w) => w.length > 2)
->>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
     const fileNameWords = normalizedFileName.split(" ").filter((w) => w.length > 2)
 
     if (titleWords.length === 0) continue
@@ -145,7 +80,6 @@ function findMatchingDownloads(
     const matchedWords = titleWords.filter((word) => fileNameWords.includes(word))
     const wordMatchScore = matchedWords.length / titleWords.length
 
-<<<<<<< HEAD
     if (wordMatchScore >= 0.7 && wordMatchScore > bestScore) {
       bestScore = wordMatchScore
       bestMatch = download
@@ -153,14 +87,6 @@ function findMatchingDownloads(
   }
 
   return bestMatch
-=======
-    if (wordMatchScore >= 0.7) {
-      matches.push(download)
-    }
-  }
-
-  return matches
->>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
 }
 
 export async function GET(request: NextRequest) {
@@ -187,15 +113,11 @@ export async function GET(request: NextRequest) {
     }
 
     const data = await response.json()
-<<<<<<< HEAD
     console.log(data)
-=======
->>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
     const downloads: DownloadItem[] = data.data || []
 
     console.log("[v0] Found", downloads.length, "downloads on server")
 
-<<<<<<< HEAD
     // Find matching download
     const match = findMatchingDownload(movieTitle, year, downloads)
 
@@ -209,26 +131,6 @@ export async function GET(request: NextRequest) {
           fileSize: match.file_size,
           duration: match.duration,
         },
-=======
-    const matches = findMatchingDownloads(movieTitle, year, downloads)
-
-    if (matches.length > 0) {
-      console.log("[v0] Found", matches.length, "matching downloads for:", movieTitle)
-
-      const downloadOptions = matches.map((match) => ({
-        fileName: match.file_name,
-        telegramLink: match.telegram_link,
-        fileSize: match.file_size,
-        formattedSize: formatFileSize(match.file_size),
-        quality: extractQuality(match.file_name),
-        codec: extractCodec(match.file_name),
-        duration: match.duration,
-      }))
-
-      return NextResponse.json({
-        available: true,
-        downloads: downloadOptions,
->>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
       })
     }
 
