@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 
-const DOWNLOAD_SERVER_URL = process.env.DOWNLOAD_SERVER_URL || "https://telegrambot-i096.onrender.com"
+const DOWNLOAD_SERVER_URL = process.env.DOWNLOAD_SERVER_URL || "https://telegrambot-ihtv.onrender.com" 
 const DOWNLOAD_ENDPOINT = process.env.DOWNLOAD_ENDPOINT || "/allvideos" // Changed from /api/videos to /allvideos
 
 interface DownloadItem {
@@ -113,6 +113,7 @@ export async function GET(request: NextRequest) {
     }
 
     const data = await response.json()
+    console.log(data)
     const downloads: DownloadItem[] = data.data || []
 
     console.log("[v0] Found", downloads.length, "downloads on server")

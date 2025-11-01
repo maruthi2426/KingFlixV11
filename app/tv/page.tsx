@@ -1,8 +1,9 @@
 import { Suspense } from "react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { MediaCard } from "@/components/media-card"
 import { Pagination } from "@/components/pagination"
+import FetchedMediaCard from "@/components/fetched-series"
+
 
 export default function TVPage({
   searchParams,
@@ -25,14 +26,10 @@ export default function TVPage({
 }
 
 async function TVContent({ page }: { page: number }) {
-  let baseUrl = process.env.NEXT_PUBLIC_SITE_URL
-    ? process.env.NEXT_PUBLIC_SITE_URL
-    : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000"
+  let baseUrl =   "https://cineverse-backend-3duy.onrender.com" 
 
   baseUrl = baseUrl.replace(/\/$/, "")
-  const url = `${baseUrl}/api/db-content?type=tv&page=${page}`
+  const url = `${baseUrl}/allseries`
 
   const res = await fetch(url, { cache: "force-cache" })
   if (!res.ok) {
@@ -45,7 +42,8 @@ async function TVContent({ page }: { page: number }) {
   }
 
   const data = await res.json()
-  const content = data.results || []
+  const content = data.data || []
+  console.log(content)
   const totalPages = data.total_pages || 1
   const totalResults = data.total_results || 0
 
@@ -62,13 +60,15 @@ async function TVContent({ page }: { page: number }) {
     <div className="space-y-6">
       <div className="space-y-2">
         <h1 className="text-2xl md:text-3xl font-serif font-bold">TV Series</h1>
-        <p className="text-muted-foreground text-sm">Popular TV shows from TMDB ({totalResults} total)</p>
+        <p className="text-muted-foreground text-sm">Popular TV shows  ({content.length} total)</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-        {content.map((item: any) => (
-          <MediaCard key={item.id} item={item} mediaType="tv" />
-        ))}
+       
+         {content.map((item: any) => (
+                   <FetchedMediaCard key={item.id} item={item} />
+                   
+                ))}
       </div>
 
       <Pagination currentPage={page} totalPages={totalPages} baseUrl="/tv" />
