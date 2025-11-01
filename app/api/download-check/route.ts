@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 
-const DOWNLOAD_SERVER_URL = process.env.DOWNLOAD_SERVER_URL || "https://telegrambot-ihtv.onrender.com" 
+const DOWNLOAD_SERVER_URL = process.env.DOWNLOAD_SERVER_URL || "https://cineverse-backend-3duy.onrender.com" 
 const DOWNLOAD_ENDPOINT = process.env.DOWNLOAD_ENDPOINT || "/allvideos" // Changed from /api/videos to /allvideos
 
 interface DownloadItem {
