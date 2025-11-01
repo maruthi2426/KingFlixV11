@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Pagination } from "@/components/pagination"
-import FetchedMediaCard from "@/components/fetched-series"
+import FetchedSeriesCard from "@/components/fetched-series"
 
 
 export default function TVPage({
@@ -66,7 +66,7 @@ async function TVContent({ page }: { page: number }) {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
        
          {content.map((item: any) => (
-                   <FetchedMediaCard key={item.id} item={item} />
+                   <FetchedSeriesCard key={item.id} item={item} />
                    
                 ))}
       </div>

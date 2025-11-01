@@ -23,7 +23,7 @@ interface FetchedMediaCardProps {
   item: VideoItem
 }
 
-export default function FetchedMediaCard({ item }: FetchedMediaCardProps) {
+export default function FetchedSeriesCard({ item }: FetchedMediaCardProps) {
   const [movie, setMovie] = useState<Movie | null>(null)
   const [loading, setLoading] = useState(true)
 console.log("Fetching TMDB for:", item.tmdbId, "with key:", process.env.NEXT_PUBLIC_TMDB_API_KEY)
@@ -57,7 +57,7 @@ console.log("Fetching TMDB for:", item.tmdbId, "with key:", process.env.NEXT_PUB
 
   if (!movie) return null
 
-  const href = `/movie/${item.tmdbId}`
+  const href = `/tv/${item.tmdbId}`
 
   return (
     <div className="group relative">
