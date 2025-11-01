@@ -30,6 +30,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} dark`}>
+<<<<<<< HEAD
+=======
+      <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      </head>
+>>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
       <body className="min-h-screen">
         <RouterProgress />
         {children}

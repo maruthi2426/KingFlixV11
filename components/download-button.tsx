@@ -1,8 +1,16 @@
 "use client"
 import { Download, Loader2 } from "lucide-react"
+<<<<<<< HEAD
 import useSWR from "swr"
 import type { Movie } from "@/lib/tmdb"
 import { getTitle, getYear } from "@/lib/tmdb"
+=======
+import { useState } from "react"
+import useSWR from "swr"
+import type { Movie } from "@/lib/tmdb"
+import { getTitle, getYear } from "@/lib/tmdb"
+import { DownloadOptionsModal } from "./download-options-modal"
+>>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
 
 interface DownloadButtonProps {
   item: Movie
@@ -15,7 +23,12 @@ const fetcher = (url: string) =>
   })
 
 export function DownloadButton({ item }: DownloadButtonProps) {
+<<<<<<< HEAD
   console.log(item)
+=======
+  const [showModal, setShowModal] = useState(false)
+
+>>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
   const title = getTitle(item)
   const year = getYear(item)
 
@@ -45,6 +58,7 @@ export function DownloadButton({ item }: DownloadButtonProps) {
   }
 
   return (
+<<<<<<< HEAD
     <a
       href={data.download.telegramLink}
       target="_blank"
@@ -54,5 +68,23 @@ export function DownloadButton({ item }: DownloadButtonProps) {
       <Download className="w-5 h-5" />
       Download
     </a>
+=======
+    <>
+      <button
+        onClick={() => setShowModal(true)}
+        className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors text-sm"
+      >
+        <Download className="w-5 h-5" />
+        Download
+      </button>
+
+      <DownloadOptionsModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        movieTitle={title}
+        downloads={data.downloads || []}
+      />
+    </>
+>>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
   )
 }

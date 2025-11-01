@@ -60,7 +60,11 @@ async function MoviesContent({ page }: { page: number }) {
     <div className="space-y-6">
       <div className="space-y-2">
         <h1 className="text-2xl md:text-3xl font-serif font-bold">Movies</h1>
+<<<<<<< HEAD
         <p className="text-muted-foreground text-sm">Popular movies ({content.length} total)</p>
+=======
+        <p className="text-muted-foreground text-sm">Popular movies from TMDB ({content.length} total)</p>
+>>>>>>> a43fb06f7e1ab2e1ce81dc30cf3dbe4cf86da655
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
