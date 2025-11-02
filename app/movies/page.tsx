@@ -26,7 +26,7 @@ export default function MoviesPage({
 }
 
 async function MoviesContent({ page }: { page: number }) {
-  let baseUrl = process.env.BACKEND_URL
+  let baseUrl = process.env.BACKEND_URL || "https://cineverse-backend-3duy.onrender.com" 
 
   const url = `${baseUrl}/allvideos`
 
